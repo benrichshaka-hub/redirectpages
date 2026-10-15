@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Concierge Support | DesireVanta</title>
+  <meta name="description" content="Official 24/7 customer care, creator relations, DMCA notices, and 18 U.S.C. 2257 compliance contact for DesireVanta.">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #020408;
+      background-image: url('assets/electric_thunder_bg.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* PAGE - DESIREVANTA DARK OBSIDIAN FLAME THEME */
+    .contact-page { flex: 1; max-width: 1160px; margin: 0 auto; width: 100%; padding: 48px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 860px) { .contact-page { grid-template-columns: 1fr; padding: 32px 16px; gap: 36px; } }
+
+    /* LEFT: Contact Info */
+    .contact-info h1 { font-size: 2.1rem; font-weight: 900; color: #ffffff; margin-bottom: 12px; letter-spacing: -0.02em; font-family: 'Outfit', sans-serif; }
+    .contact-info .lead { font-size: 0.95rem; color: #94a3b8; margin-bottom: 28px; line-height: 1.7; }
+
+    .contact-card { background: #0f1118; border: 1.5px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px 22px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); transition: all 0.2s ease; }
+    .contact-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 46, 85, 0.2); border-color: rgba(255, 46, 85, 0.5); }
+    .contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-card h3 { font-size: 0.94rem; font-weight: 900; color: #ffffff; margin-bottom: 4px; font-family: 'Outfit', sans-serif; }
+    .contact-card p { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+    .contact-card a { color: #33ecff; text-decoration: none; font-weight: 700; }
+    .contact-card a:hover { text-decoration: underline; color: #ff758f; }
+
+    .company-entity-box { background: #131622; border: 1.5px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 18px 20px; font-size: 0.84rem; color: #94a3b8; line-height: 1.6; margin-top: 20px; }
+    .company-entity-box strong { color: #ffffff; }
+
+    .response-note { background: #131622; border: 1.5px solid rgba(255, 208, 0, 0.3); border-radius: 12px; padding: 16px 20px; font-size: 0.84rem; color: #e2e8f0; margin-top: 20px; line-height: 1.6; }
+
+    /* RIGHT: Direct Contact Form */
+    .contact-panel { background: #0f1118; border: 1.5px solid rgba(255, 46, 85, 0.3); border-radius: 18px; padding: 36px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
+    .contact-panel h2 { font-size: 1.55rem; font-weight: 900; color: #ffffff; margin-bottom: 6px; font-family: 'Outfit', sans-serif; }
+    .contact-panel p.sub { font-size: 0.88rem; color: #94a3b8; margin-bottom: 24px; line-height: 1.5; }
+
+    .form-row { display: flex; gap: 12px; }
+    .form-row .form-group { flex: 1; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 800; color: #e2e8f0; margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: #151824; border: 1.5px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 11px 14px; color: #ffffff; font-size: 0.92rem; font-family: 'Plus Jakarta Sans', sans-serif; transition: border-color 0.2s, background 0.2s; }
+    .form-group select option { background: #151824; color: #ffffff; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #00e5ff; background: #1a1e2e; box-shadow: 0 0 12px rgba(0, 229, 255, 0.35); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #64748b; }
+    .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.5; }
+
+    .btn-send { width: 100%; transform: none; background: linear-gradient(135deg, #00f0ff, #0066ff); border: none; color: #fff; padding: 13px; border-radius: 8px; font-size: 0.98rem; font-weight: 900; cursor: pointer; transition: all 0.2s ease; letter-spacing: 0.02em; box-shadow: 0 4px 15px rgba(0, 229, 255, 0.45); }
+    .btn-send:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 229, 255, 0.65); }
+
+    .ticket-success { display: none; background: rgba(0,180,60,0.1); border: 2px solid #00b43c; border-radius: 12px; padding: 18px; font-size: 0.85rem; color: #007326; line-height: 1.6; margin-bottom: 20px; }
+    .ticket-success strong { color: #007326; }
+
+    /* FOOTER */
+    .cv-footer {
+      background: rgba(3, 6, 14, 0.38);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1.5px solid rgba(0, 229, 255, 0.35);
+      padding: 22px 28px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: auto;
+      box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 229, 255, 0.15);
+    }
+    .cv-footer a { color: #e2e8f0; font-weight: 700; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+    .cv-footer a:hover { color: #00e5ff; }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE & TABLET SLIDEOUT DRAWER -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileDrawer()"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="index.html" class="drawer-brand" onclick="closeMobileDrawer()">
+        <span class="lj-brand-logo-wrap">
+          <img src="assets/logo.png" alt="DesireVanta" style="height: 28px; width: auto; display: block;">
+        </span>
+        <span style="font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: 2px; color: #fff;">DESIREVANTA</span>
+      </a>
+      <button type="button" class="drawer-close-btn" onclick="closeMobileDrawer()" aria-label="Close Navigation Menu">✕</button>
+    </div>
+
+    <div class="drawer-section-title">Navigation</div>
+    <nav class="drawer-nav-list">
+      <a href="index.html" class="drawer-nav-link" onclick="closeMobileDrawer()">
+        <div class="drawer-nav-link-left">
+          <span class="icon">🔥</span>
+          <span>4K Videos</span>
+        </div>
+      </a>
+      <a href="login.html" class="drawer-nav-link" onclick="closeMobileDrawer()">
+        <div class="drawer-nav-link-left">
+          <span class="icon">🔑</span>
+          <span>Sign In</span>
+        </div>
+      </a>
+      <a href="login.html#register" class="drawer-nav-link" onclick="closeMobileDrawer()">
+        <div class="drawer-nav-link-left">
+          <span class="icon">✨</span>
+          <span>Join Free</span>
+        </div>
+      </a>
+    </nav>
+
+    <div class="drawer-section-title">Legal &amp; Support</div>
+    <nav class="drawer-nav-list">
+      <a href="contact.html" class="drawer-nav-link active">
+        <div class="drawer-nav-link-left">
+          <span class="icon">📞</span>
+          <span>Support</span>
+        </div>
+      </a>
+      <a href="privacy.html" class="drawer-nav-link">
+        <div class="drawer-nav-link-left">
+          <span class="icon">🔒</span>
+          <span>Privacy Policy</span>
+        </div>
+      </a>
+      <a href="terms.html" class="drawer-nav-link">
+        <div class="drawer-nav-link-left">
+          <span class="icon">⚖️</span>
+          <span>Terms of Service</span>
+        </div>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- UNIFORM SIGNATURE ROYAL PURPLE HEADER BAR -->
+  <header class="lj-header" id="siteNavbar">
+    <div class="lj-header-container">
+      <!-- Left: Hamburger & Brand Title -->
+      <div class="lj-header-left">
+        <button type="button" class="lj-hamburger-btn" id="mobileMenuToggle" onclick="toggleMobileDrawer()" aria-label="Open Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <a href="index.html" class="lj-brand-link" aria-label="DESIREVANTA Home">
+          <span class="lj-brand-logo-wrap">
+            <img src="assets/logo.png" alt="DesireVanta Logo" style="height: 30px; width: auto; display: block;">
+          </span>
+          <span class="lj-brand-title">
+            DESIREVANTA
+            <span class="lj-brand-dot"></span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Center: Primary Nav -->
+      <nav class="lj-header-center" aria-label="Main Video Navigation">
+        <a href="index.html" class="lj-nav-link-main">
+          <span>4K Videos</span>
+        </a>
+        <a href="login.html" class="lj-nav-link-main">
+          <span>Sign In</span>
+        </a>
+        <a href="contact.html" class="lj-nav-link-main active">
+          <span>Support Desk</span>
+        </a>
+      </nav>
+
+      <!-- Right: Login Link, Join Now for Free CTA -->
+      <div class="lj-header-right">
+        <a href="login.html" class="lj-login-link">
+          Login
+        </a>
+        <a href="login.html#register" class="btn-lj-join-free" style="text-decoration:none; display:inline-flex; align-items:center;">
+          Join Now for FREE
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="contact-page">
+
+    <!-- LEFT: Genuine Company & Support Details -->
+    <div class="contact-info">
+      <h1>Contact &amp; Concierge Support</h1>
+      <p class="lead">Have a question regarding 4K streams, technical assistance, model onboarding, or legal matters? Our team is available 24/7.</p>
+
+      <div class="contact-card">
+        <span class="contact-icon">&#x2709;&#xFE0F;</span>
+        <div>
+          <h3>Member &amp; Technical Support</h3>
+          <p>Direct assistance for streaming resolution, viewing options &amp; accounts:<br>
+          <a href="mailto:support@desirevanta.com">support@desirevanta.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">&#x1F6E1;&#xFE0F;</span>
+        <div>
+          <h3>Content Moderation &amp; DMCA</h3>
+          <p>Takedown notices and copyright inquiries pursuant to 17 U.S.C. 512:<br>
+          <a href="mailto:dmca@desirevanta.com">dmca@desirevanta.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">&#x2696;&#xFE0F;</span>
+        <div>
+          <h3>Legal &amp; 18 U.S.C. 2257 Records</h3>
+          <p>Records custodian inspection notices &amp; compliance:<br>
+          <a href="mailto:compliance@desirevanta.com">compliance@desirevanta.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <span class="contact-icon">&#x1F4CB;</span>
+        <div>
+          <h3>Creator &amp; Model Relations</h3>
+          <p>Verified European model applications and agency inquiries:<br>
+          <a href="mailto:creators@desirevanta.com">creators@desirevanta.com</a></p>
+        </div>
+      </div>
+
+      <div class="company-entity-box">
+        <strong>Corporate Operating Entity:</strong><br>
+        DesireVanta Digital Network B.V.<br>
+        Keizersgracht 482, 1016 EG Amsterdam, Netherlands<br>
+        Designated Custodian of Records: Compliance Director
+      </div>
+
+      <div class="response-note">
+        &#x23F1;&#xFE0F; <strong>Response Commitment:</strong> All inquiries are reviewed by our operations desk in the order received. Standard response time is within <strong>2 to 4 hours</strong>, guaranteed within 24 hours.
+      </div>
+    </div>
+
+    <!-- RIGHT: Direct Support Inquiry Form -->
+    <div class="contact-panel">
+      <h2>Send Us a Message</h2>
+      <p class="sub">Complete the form below and an agent will respond directly to your email address.</p>
+
+      <form id="contactForm" onsubmit="handleContactSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cname">Your Name</label>
+            <input type="text" id="cname" placeholder="Full name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="cemail">Email Address</label>
+            <input type="email" id="cemail" placeholder="name@domain.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cdepartment">Inquiry Category</label>
+          <select id="cdepartment" required>
+            <option value="">Select Department / Subject</option>
+            <option value="technical">Technical &amp; 4K Streaming Support</option>
+            <option value="account">Account &amp; Access Assistance</option>
+            <option value="creator">Creator &amp; Performer Onboarding</option>
+            <option value="dmca">DMCA / Content Takedown Notice</option>
+            <option value="compliance">18 U.S.C. 2257 Records Request</option>
+            <option value="general">General Feedback &amp; Business Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="csubject">Subject Line</label>
+          <input type="text" id="csubject" placeholder="Brief summary of your inquiry" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cmessage">Your Message</label>
+          <textarea id="cmessage" placeholder="Provide full details regarding your question or request..." required minlength="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn-send" id="sendBtn">✉️ Submit Support Inquiry</button>
+        <p style="margin-top: 14px; font-size: 0.78rem; color: #777; text-align: center;">Prefer direct email? You can also reach our team at <a href="mailto:support@desirevanta.com" style="color: #33ecff; text-decoration: none; font-weight: 600;">support@desirevanta.com</a></p>
+      </form>
+    </div>
+
+  </div>
+
+  <footer class="cv-footer">
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="contact.html">Contact Us</a>
+    &nbsp;&nbsp;&copy; 2026 DesireVanta. All rights reserved. 18+ Only.
+  </footer>
+
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      var btn = document.getElementById('sendBtn');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Redirecting to Home...';
+      }
+      window.location.href = 'index.html';
+    }
+
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const overlay = document.getElementById('mobileNavOverlay');
+      if (drawer && overlay) {
+        drawer.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
+    }
+
+    function closeMobileDrawer() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const overlay = document.getElementById('mobileNavOverlay');
+      if (drawer && overlay) {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

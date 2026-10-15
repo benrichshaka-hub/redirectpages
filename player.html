@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DesireVanta — Bigscreen 4K Video Player</title>
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preconnect" href="https://pub-7fea2d518b0b43498beccda5c0251c09.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-7fea2d518b0b43498beccda5c0251c09.r2.dev">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #020408;
+      background-image: url('assets/electric_thunder_bg.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Top Navigation Bar */
+    .player-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: rgba(3, 6, 14, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1.5px solid rgba(0, 229, 255, 0.35);
+      box-shadow: none;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-back {
+      background: rgba(255, 46, 85, 0.15);
+      border: 1px solid #00e5ff;
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background: #00e5ff;
+      color: #fff;
+      transform: translateX(-2px);
+    }
+
+    .model-info-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .model-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .model-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .model-badge {
+      background: linear-gradient(135deg, #00f0ff, #0066ff);
+      color: #ffffff;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .model-meta {
+      font-size: 0.76rem;
+      color: #ff758f;
+      margin-top: 1px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-mute {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-mute:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Bigscreen Fullscreen Primary CTA */
+    .btn-bigscreen {
+      background: linear-gradient(135deg, #00e5ff 0%, #ff5e36 100%);
+      border: 1.5px solid #ff758f;
+      color: #ffffff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 0 16px rgba(255, 46, 85, 0.5);
+      transition: all 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-bigscreen:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px rgba(255, 46, 85, 0.8);
+      border-color: #ffffff;
+    }
+
+    /* Full-Height Cinema Stage */
+    .player-stage {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #mainVideo {
+      width: 100%;
+      height: 100%;
+      max-width: 100vw;
+      max-height: 100%;
+      object-fit: contain;
+      background: #000000;
+      display: block;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      background: rgba(7, 8, 12, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 229, 255, 0.45);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+      z-index: 5;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .wm-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00e5ff;
+      box-shadow: 0 0 8px #00e5ff;
+    }
+
+    /* Loading Spinner */
+    .loading-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 7, 10, 0.92);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      z-index: 10;
+      transition: opacity 0.4s;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 52px;
+      height: 52px;
+      border: 4px solid rgba(0, 229, 255, 0.25);
+      border-top-color: #00e5ff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ff758f;
+      letter-spacing: 0.05em;
+    }
+
+    /* Bigscreen Hover Overlay Hint */
+    .bigscreen-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(7, 8, 12, 0.88);
+      border: 1px solid rgba(255, 46, 85, 0.5);
+      color: #ffffff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      pointer-events: none;
+      opacity: 0.85;
+      transition: opacity 0.3s;
+      z-index: 5;
+    }
+
+    /* Bottom Bar */
+    .player-bottombar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: rgba(3, 6, 14, 0.38);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1.5px solid rgba(0, 229, 255, 0.35);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+      gap: 12px;
+      flex-wrap: wrap;
+      z-index: 20;
+    }
+
+    .quality-badge {
+      background: rgba(0, 229, 255, 0.25);
+      border: 1px solid #00e5ff;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.06em;
+    }
+
+    .btn-private {
+      background: linear-gradient(135deg, #00f0ff, #0066ff);
+      border: none;
+      color: #ffffff;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 229, 255, 0.45);
+    }
+
+    .btn-private:hover {
+      background: #33ecff;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      .model-meta { display: none; }
+      .player-topbar, .player-bottombar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: rgba(3, 6, 14, 0.38);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1.5px solid rgba(0, 229, 255, 0.35);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+      gap: 12px;
+      flex-wrap: wrap;
+      z-index: 20;
+    }
+      .btn-bigscreen { padding: 7px 14px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="player-topbar">
+    <div class="topbar-left">
+      <a href="index.html" class="btn-back">← Back</a>
+      <div class="model-info-block">
+        <div class="model-name-row">
+          <span class="model-name" id="modelNameEl">Loading Model...</span>
+          <span class="model-badge">4K ULTRA</span>
+        </div>
+        <div class="model-meta" id="modelMetaEl">4K 60FPS • 🔊 HD Audio</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button type="button" class="btn-mute" id="muteBtn" onclick="toggleMute()">🔇 Unmute</button>
+      <button type="button" class="btn-bigscreen" onclick="goFullscreen()" id="btnBigscreen">
+        <span>⛶</span>
+        <span>Bigscreen</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Cinema Bigscreen Stage -->
+  <div class="player-stage" id="playerStage" onclick="togglePlayPause()" ondblclick="goFullscreen()" title="Click to Play/Pause, Double-Click for Fullscreen">
+    <div class="watermark">
+      <span class="wm-dot"></span>
+      DESIREVANTA • 4K ULTRA STREAM
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+      <div class="loading-text" id="loadingText">Connecting to high-speed 4K stream...</div>
+    </div>
+
+    <video id="mainVideo" muted playsinline autoplay loop preload="auto" controls></video>
+
+    <div class="bigscreen-hint" id="bigscreenHint">
+      💡 Tip: Click ⛶ Bigscreen or press F for full display
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="player-bottombar">
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <span class="quality-badge" id="qualityEl">4K 60FPS</span>
+      <span style="font-size:0.8rem; color:#888;">Cloudflare High-Speed CDN Stream</span>
+      <span style="font-size:0.75rem; color:#ff758f;">• 18+ Consenting Performer • High-Definition Stream Reel</span>
+    </div>
+    <a href="contact.html" class="btn-private">💬 Contact us about VIP</a>
+  </div>
+
+  <script>
+    var params    = new URLSearchParams(window.location.search);
+    var videoSrc  = params.get('src')     || '';
+    var modelName = params.get('name')    || 'Featured Performer';
+    var modelAge  = params.get('age')     || '';
+    var modelFlag = params.get('flag')    || '';
+    var quality   = params.get('quality') || '4K 60FPS';
+
+    document.getElementById('modelNameEl').textContent = modelName + (modelAge ? ', ' + modelAge : '') + (modelFlag ? ' ' + modelFlag : '');
+    document.getElementById('modelMetaEl').textContent = quality + ' • 🔊 HD Audio';
+    document.getElementById('qualityEl').textContent   = quality;
+    document.title = 'DesireVanta Bigscreen — ' + modelName;
+
+    var vid = document.getElementById('mainVideo');
+    var overlay = document.getElementById('loadingOverlay');
+    var hint = document.getElementById('bigscreenHint');
+
+    if (videoSrc) {
+      vid.src = videoSrc;
+      vid.load();
+
+      vid.addEventListener('loadeddata', function() {
+        overlay.classList.add('hidden');
+        vid.play().catch(function(){});
+      });
+      vid.addEventListener('canplay', function() {
+        overlay.classList.add('hidden');
+        vid.play().catch(function(){});
+      });
+      vid.addEventListener('waiting', function() { overlay.classList.remove('hidden'); });
+      vid.addEventListener('playing', function() { overlay.classList.add('hidden'); });
+      vid.addEventListener('error', function() {
+        document.getElementById('loadingText').textContent = 'Stream temporarily unavailable. Retrying...';
+      });
+
+      vid.play().catch(function(){});
+    } else {
+      document.getElementById('loadingText').textContent = 'No stream URL provided.';
+    }
+
+    // Hide hint after 4 seconds
+    setTimeout(function() {
+      if (hint) hint.style.opacity = '0';
+    }, 4500);
+
+    function toggleMute() {
+      vid.muted = !vid.muted;
+      document.getElementById('muteBtn').textContent = vid.muted ? '🔇 Unmute' : '🔊 Sound On';
+    }
+
+    function togglePlayPause() {
+      if (vid.paused) {
+        vid.play().catch(function(){});
+      } else {
+        vid.pause();
+      }
+    }
+
+    function goFullscreen() {
+      var stage = document.getElementById('playerStage');
+      var target = vid;
+      
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (target.requestFullscreen) {
+          target.requestFullscreen().catch(function() {
+            if (stage.requestFullscreen) stage.requestFullscreen();
+          });
+        } else if (target.webkitRequestFullscreen) {
+          target.webkitRequestFullscreen();
+        } else if (stage.requestFullscreen) {
+          stage.requestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'm' || e.key === 'M') toggleMute();
+      if (e.key === 'f' || e.key === 'F') goFullscreen();
+      if (e.key === ' ') {
+        e.preventDefault();
+        togglePlayPause();
+      }
+      if (e.key === 'Escape') {
+        if (!document.fullscreenElement) {
+          window.location.href = 'index.html';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
